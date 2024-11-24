@@ -2,8 +2,8 @@ import React, { FC, useState, ChangeEvent, FormEvent } from "react";
 import "./styles.css";
 import { Pizza } from "../models/Pizza";
 
-interface AddPizzaFormProps {
-  addPizza: (newPizza: Pizza) => void;
+interface EditPizzaFormProps {
+  data: Pizza;
 }
 
 type InitTypeState = {
@@ -12,59 +12,51 @@ type InitTypeState = {
   img: string;
 };
 
-const initState: InitTypeState = {
-  title: "",
-  price: "",
-  img: "",
-};
-
-const AddPizzaForm: FC<AddPizzaFormProps> = ({ addPizza }) => {
-  const [newPizza, setNewPizza] = useState<InitTypeState>(initState);
+const EditPizzaForm: FC<EditPizzaFormProps> = ({ data }) => {
+  const [editPizza, setEditPizza] = useState<Pizza>(data);
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
-    setNewPizza({ ...newPizza, [name]: value });
+    setEditPizza({ ...editPizza, [name]: value });
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const { title, price, img } = newPizza;
+    const { title, price, img } = editPizza;
 
     if (title && price && img) {
-      addPizza({ id: Date.now(), title, img, price: Number(price) });
+      console.log(editPizza);
     }
-
-    setNewPizza(initState);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="edit-form" onSubmit={handleSubmit}>
       <input
         type="text"
         name="title"
-        value={newPizza.title}
+        value={editPizza.title}
         placeholder="Введите название товара"
         onChange={changeHandler}
       />
       <input
-        type="number"
+        type="text"
         name="price"
-        value={newPizza.price}
+        value={editPizza.price}
         placeholder="Введите стоимость товара"
         onChange={changeHandler}
       />
       <input
         type="text"
         name="img"
-        value={newPizza.img}
+        value={editPizza.img}
         placeholder="Вставьте изображение"
         onChange={changeHandler}
       />
-      <button type="submit">Добавить в меню</button>
+      <button type="submit">Подтвердить в меню</button>
     </form>
   );
 };
 
-export default AddPizzaForm;
+export default EditPizzaForm;
