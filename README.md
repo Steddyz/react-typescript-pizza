@@ -1,3 +1,7 @@
+Pizza Admin Pannel [demo](https://react-typescript-pizza-q27hfivvt-steddyzs-projects.vercel.app)
+
+images("image-1.jpg - image-6.jpg")
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
