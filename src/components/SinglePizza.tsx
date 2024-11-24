@@ -6,9 +6,10 @@ import EditPizzaForm from "./EditPizzaForm";
 
 interface SinglePizzaProps {
   pizza: Pizza;
+  updatePizza: (newPizza: Pizza) => void;
 }
 
-const SinglePizza: FC<SinglePizzaProps> = ({ pizza }) => {
+const SinglePizza: FC<SinglePizzaProps> = ({ pizza, updatePizza }) => {
   const [edit, setEdit] = useState<boolean>(false);
 
   const handleToggleEdit = () => {
@@ -25,7 +26,13 @@ const SinglePizza: FC<SinglePizzaProps> = ({ pizza }) => {
         <RiDeleteBin2Fill />
       </div>
 
-      {edit ? <EditPizzaForm data={pizza} /> : null}
+      {edit ? (
+        <EditPizzaForm
+          handleToggleEdit={handleToggleEdit}
+          updatePizza={updatePizza}
+          data={pizza}
+        />
+      ) : null}
     </div>
   );
 };

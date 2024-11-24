@@ -4,6 +4,8 @@ import { Pizza } from "../models/Pizza";
 
 interface EditPizzaFormProps {
   data: Pizza;
+  updatePizza: (newPizza: Pizza) => void;
+  handleToggleEdit: () => void;
 }
 
 type InitTypeState = {
@@ -12,7 +14,11 @@ type InitTypeState = {
   img: string;
 };
 
-const EditPizzaForm: FC<EditPizzaFormProps> = ({ data }) => {
+const EditPizzaForm: FC<EditPizzaFormProps> = ({
+  data,
+  updatePizza,
+  handleToggleEdit,
+}) => {
   const [editPizza, setEditPizza] = useState<Pizza>(data);
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +33,8 @@ const EditPizzaForm: FC<EditPizzaFormProps> = ({ data }) => {
     const { title, price, img } = editPizza;
 
     if (title && price && img) {
-      console.log(editPizza);
+      updatePizza(editPizza);
+      handleToggleEdit();
     }
   };
 
