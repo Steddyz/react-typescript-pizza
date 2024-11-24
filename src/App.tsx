@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import AddPizzaForm from "./components/AddPizzaForm";
 import { Pizza } from "./models/Pizza";
 import "./App.css";
@@ -17,12 +17,21 @@ const App: FC = () => {
     );
   };
 
+  const deletePizza = (id: number) => {
+    const newPizzasList = pizzasList.filter((pizza) => pizza.id !== id);
+    setPizzasList(newPizzasList);
+  };
+
   return (
     <div className="App">
       <div className="wrap">
         <span className="heading">Steddy Pizza Store</span>
         <AddPizzaForm addPizza={addPizza} />
-        <DisplayPizzas pizzasList={pizzasList} updatePizza={updatePizza} />
+        <DisplayPizzas
+          deletePizza={deletePizza}
+          pizzasList={pizzasList}
+          updatePizza={updatePizza}
+        />
       </div>
     </div>
   );

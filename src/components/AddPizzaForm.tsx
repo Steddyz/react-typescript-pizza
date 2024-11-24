@@ -1,4 +1,4 @@
-import React, { FC, useState, ChangeEvent, FormEvent } from "react";
+import { FC, useState, ChangeEvent, FormEvent } from "react";
 import "./styles.css";
 import { Pizza } from "../models/Pizza";
 
